@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\PoinController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +26,8 @@ Route::post('/nasabah', [NasabahController::class, 'store'])->name('nasabah.stor
 
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
 Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+
+Route::get('/poin', [PoinController::class, 'index'])->name('poin.index');
+
+Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+Route::post('/report', [ReportController::class, 'print'])->name('report.print');

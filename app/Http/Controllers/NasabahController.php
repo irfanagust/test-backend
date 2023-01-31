@@ -19,7 +19,6 @@ class NasabahController extends Controller
     {
         try {
             $data = new Nasabah();
-            $data->account_id = random_int(1, 100) + 1;
             $data->name = $request->name;
             $data->save();
 

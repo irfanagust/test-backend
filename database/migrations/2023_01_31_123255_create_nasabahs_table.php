@@ -15,7 +15,6 @@ class CreateNasabahsTable extends Migration
     {
         Schema::create('nasabah', function (Blueprint $table) {
             $table->id();
-            $table->integer('account_id')->unsigned();
             $table->string('name');
             $table->timestamps();
         });

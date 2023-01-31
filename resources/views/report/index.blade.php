@@ -14,15 +14,15 @@
 </head>
 
 <body>
-    <div class="card text-center">
+    <div class="card">
         <div class="card-header">
             <ul class="nav nav-pills card-header-pills">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('nasabah.index')}}">Nasabah</a>
+                    <a class="nav-link" href="{{ route('nasabah.index') }}">Nasabah</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('transaksi.index')}}">Transaksi</a>
+                    <a class="nav-link" href="{{ route('transaksi.index') }}">Transaksi</a>
                 </li>
 
                 <li class="nav-item">
@@ -47,65 +47,32 @@
                     </div>
                 </div>
             @endif
-            <div class="container">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    + Tambah Nasabah
-                </button>
-            </div>
         </div>
-        
+
         <div class="card-body">
             <div class="container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Id Nasabah</th>
-                            <th>Nama Nasabah</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($collection as $item)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="3">
-                                    Data Kosong
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah nasabah</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="POST" action="{{ route('nasabah.store') }}">
+            <form method="POST" action="{{ route('report.print') }}">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name" class="col-form-label">Nama Nasabah:</label>
-                            <input type="text" class="form-control" name="name" id="name">
+                            <label for="account_id" class="col-form-label">Pilih Nasabah:</label>
+                            <select class="form-control" name="account_id" id="account_id">
+                                @foreach ($accounts as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_transaction_date">Tanggal Mulai Transaksi</label>
+                            <input type="date" class="form-control" name="start_transaction_date" id="start_transaction_date">
+                        </div>
+                        <div class="form-group">
+                            <label for="end_transaction_date">Tanggal Akhir Transaksi</label>
+                            <input type="date" class="form-control" name="end_transaction_date" id="end_transaction_date">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
