@@ -13,8 +13,10 @@ class CreateNasabahsTable extends Migration
      */
     public function up()
     {
-        Schema::create('nasabahs', function (Blueprint $table) {
+        Schema::create('nasabah', function (Blueprint $table) {
             $table->id();
+            $table->integer('account_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateNasabahsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nasabahs');
+        Schema::dropIfExists('nasabah');
     }
 }
