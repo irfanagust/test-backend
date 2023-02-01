@@ -1,0 +1,5 @@
+1. ubah file .env.example -> .env
+2. sesuaikan isian .env dengan environment anda (username dan password database)
+3. jalankan perintah 'composer install'
+4. jalankan perintah 'php artisan migrate'
+5. jalankan perintah 'php artisan serve'
